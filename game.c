@@ -8,7 +8,9 @@ int jouer(SDL_Renderer* renderer) {
     
 	//charger image et personnage. 
 
-    
+    Personnage mario;
+    chargerMario(&mario, 0,renderer);
+
 	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255); //on met le fond en blanc
     int continuer = 1;
     SDL_Event events;
@@ -27,7 +29,7 @@ int jouer(SDL_Renderer* renderer) {
         }
         
 		//on gère les divers events.
-		
+		afficherPerso(&mario, 0, 0 ,renderer);
         SDL_RenderPresent(renderer); // affiche le tout
         
         

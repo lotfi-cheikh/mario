@@ -56,7 +56,7 @@ int main(int argc, char *argv[]){
                         // on a appuye sur la touche 1
                     case SDLK_2 :
                         SDL_RenderClear(renderer);
-                        SDL_Texture *textureMenu = loadImage("img/goomba1.png" ,renderer);
+                        SDL_Texture *textureMenu = loadImage("img/imageee.png" ,renderer);
                         SDL_RenderCopy(renderer,textureMenu,NULL,NULL);
                         SDL_RenderPresent(renderer);
                         break;
