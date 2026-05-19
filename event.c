@@ -8,6 +8,28 @@ void mapScroll(Map* map, Personnage* mario)
 
 void deplacement(Map* map, Personnage* mario, Sprites* imageDecors, Personnage** goombas, int nbGoomba) {
     //on effectue les modifications dans un carré temporaire, si il n'y a pas de collision, on change la position de Mario.
+    if (mario->direction == 2){
+        mario->position.x--;
+    }
+    if (mario->direction == 1){
+        mario->position.x++;
+    }
+
+    if(mario->jump=1)
+    {
+        mario->position.y--;
+        mario->jumptime++;
+        if(mario->jumptime==70)
+        {
+            mario->jump=0;
+            while (mario->jumptime>0)
+            {
+                mario->position.y++;
+                mario->jumptime--;
+            }
+        }
+    }
+    
     
 }
 

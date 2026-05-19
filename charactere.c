@@ -39,18 +39,54 @@ mario->position.y = 900;
 }
 
 void afficherPerso(Personnage* mario, int xscroll, int yscroll , SDL_Renderer *renderer) {
-    SDL_RenderCopy(renderer,mario->image[0],NULL,&mario->position);
+    
+    
+    /*if (mario->direction == 1){
+        SDL_RenderCopy(renderer,mario->image[1],NULL,&mario->position);
+    }
+    else if(mario->direction == 2){
+        SDL_RenderCopy(renderer,mario->image[4],NULL,&mario->position);
+    }*/
+    if(mario->direction==1){
+        SDL_RenderCopy(renderer,mario->image[chooseSpriteMovement(mario,0,1)],NULL,&mario->position);
+    }
+    else if(mario->direction==2){
+        SDL_RenderCopy(renderer,mario->image[chooseSpriteMovement(mario,3,4)],NULL,&mario->position);
+    }
 
+    else if (mario->dernieredirection ==1 && mario->direction ==0){
+        SDL_RenderCopy(renderer,mario->image[0],NULL,&mario->position);
+    }
+    else if(mario->dernieredirection==2 && mario->direction ==0){
+        SDL_RenderCopy(renderer,mario->image[3],NULL,&mario->position);
+    }
+    else {
+        SDL_RenderCopy(renderer,mario->image[0],NULL,&mario->position);
+    }
+
+    
    
 }
 
 
 //retourne soit numéro1 soit numéro2 pour alterner entre 2 sprite sur un mouvement.
 int chooseSpriteMovement(Personnage* mario, int numero1, int numero2) {
+    (mario->temp)++;
+    if(mario->temp>120){
+        mario->temp=0;
+    }
+    if(mario->temp>60){
+        return numero2;
+    }
+    else{
+        return numero1;
+    }
     
-    return numero1;
 }
 
 void freePersonnage(Personnage* mario/*, Personnage **goomba, int nbGoomba*/) {
-    
+    for(int i=0; i<6; i++){
+        SDL_DestroyTexture(mario->image[i]);
+    }
+    free(mario->image);
 }

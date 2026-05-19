@@ -24,20 +24,53 @@ int jouer(SDL_Renderer* renderer) {
             case SDL_QUIT:
                 continuer = 0;
                 break;
-				
+			case SDL_KEYDOWN : // on a appuye sur une touche
+                switch ( events.key.keysym.sym) // liste des touches a p p u y
+                {
+                    case SDLK_LEFT :
+                        mario.direction=2;
+                        break;
+                        // on a appuye sur la touche 1
+                    case SDLK_RIGHT :
+                        mario.direction=1;
+                        break;
+                    case SDLK_UP:
+                        mario.jump=1;
+                        break;
+
+                }
+                break;
+                case SDL_KEYUP : // on a appuye sur une touche
+                switch ( events.key.keysym.sym) // liste des touches a p p u y
+                {
+                    case SDLK_LEFT :
+                        mario.dernieredirection=2;
+                        mario.direction=0; 
+                        break;
+                        // on a appuye sur la touche 1
+                    case SDLK_RIGHT :
+                        mario.dernieredirection=1;
+                        mario.direction=0;
+                        break;
+
+                }
+                break;	
             }
+            
         }
         
+        deplacement(0, &mario, 0, 0, 0);
 		//on gère les divers events.
 		afficherPerso(&mario, 0, 0 ,renderer);
         SDL_RenderPresent(renderer); // affiche le tout
+
         
         
     }
     
 	//a vous de compléter, au fur et à mesure, les deux fonctions en dessous pour bien faire le nettoyage. 
     //LibererMap(map, sprites);
-    //freePersonnage(mario, goomba, nbGoomba);
+    freePersonnage(&mario /*goomba, nbGoomba*/);
 
 
     return continuer;
